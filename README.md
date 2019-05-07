@@ -16,7 +16,9 @@
 
 # server.js contains the set up for the back-end of the environment using express and the most important function inside it app.post
 
-'''javascript
+
+
+```javascript
 app.post('/weather', (req, res) => {
 const url = `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${req.body.latitude},${req.body.longitude}?units=auto`
 axios({
@@ -24,7 +26,7 @@ url: url,
 responseType: 'json'
 }).then(data => res.json(data.data.currently))
 })
-'''
+```
 it makes post request and get weather information in JSON format
 
 # script.js and most stepes of getting weather information process is inside it
@@ -33,20 +35,20 @@ it makes post request and get weather information in JSON format
 
 #getting the name of city with help of google places api
 
-'''javascript
+```javascript
 const searchElement = document.querySelector("[data-city-search]");
 const searchBox = new google.maps.places.SearchBox(searchElement);
-'''
+```
 
 #getting the longitude and latitude
-'''javascript
+```javascript
 const place = searchBox.getPlaces()[0];
 if (place == null) return;
 const latitude = place.geometry.location.lat();
 const longitude = place.geometry.location.lng();
-'''
+```
 #passing longitude and latitude in the body of fetch request
-'''javascript
+```javascript
 fetch("/weather", {
 method: "POST",
 headers: {
@@ -59,9 +61,9 @@ longitude: longitude
 })
 })
 
-'''
+```
 #fetch requests via app.post in server.js file
-'''javascript
+```javascript
 //server.js
 app.post('/weather', (req, res) => {
 const url = `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${req.body.latitude},${req.body.longitude}?units=auto`
@@ -71,20 +73,20 @@ responseType: 'json'
 }).then(data => res.json(data.data.currently))
 })
 
-'''
+```
 #getting the data in the returning response
-'''javascript
+```javascript
 .then(res => res.json())
-'''
+```
 #passing data throw place.formatted_address);
-'''javascript
+```javascript
 .then(data => {
 setWeatherData(data, place.formatted_address);
 });
 //
-'''
+```
 #populate data in the DOM including the icon
-'''javascript
+```javascript
 
 const icon = new Skycons({ color: "#222" });
 const locationElement = document.querySelector("[data-location]");
@@ -104,4 +106,4 @@ windElement.textContent = data.windSpeed;
 icon.set("icon", data.icon);
 icon.play();
 }
-'''
+```
