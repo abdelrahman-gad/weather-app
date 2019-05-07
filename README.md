@@ -32,10 +32,10 @@ it makes post request and get weather information in JSON format
 ##main stepes getting the information
 
 #getting the name of city with help of google places api
+
 '''javascript
 const searchElement = document.querySelector("[data-city-search]");
 const searchBox = new google.maps.places.SearchBox(searchElement);
-
 '''
 
 #getting the longitude and latitude
