@@ -17,7 +17,6 @@ if (process.env.NODE_ENV !== 'production') {
       responseType: 'json'
     }).then(data => res.json(data.data.currently))
   })
-  
   app.listen(3000, () => {
     console.log('Server Started')
   })
